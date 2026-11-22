@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sequences & Series — Interactive Lesson</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;color:#1f2937;line-height:1.55}
+header{background:linear-gradient(135deg,#0f766e,#2563eb);color:#fff;text-align:center;padding:30px 18px}
+header h1{margin:0 0 8px;font-size:clamp(1.8rem,5vw,2.6rem)}header p{margin:0}
+nav{position:sticky;top:0;z-index:20;background:#111827;display:flex;justify-content:center;flex-wrap:wrap;padding:8px;gap:5px}
+nav button{background:transparent;color:#fff;border:0;padding:10px 14px;border-radius:7px;cursor:pointer;font-weight:bold}
+nav button:hover,nav button.active{background:#374151}
+.container{max-width:1050px;margin:auto;padding:18px}.section{display:none}.section.active{display:block}
+.card{background:#fff;margin:18px 0;padding:22px;border-radius:15px;box-shadow:0 4px 15px #00000012}
+h2{color:#0f766e;margin-top:0}h3{color:#2563eb}.formula{background:#ecfeff;border-left:5px solid #0f766e;padding:12px 15px;margin:10px 0;font-weight:bold}
+.tip{background:#ecfdf5;border-left:5px solid #10b981;padding:13px}.warning{background:#fff7ed;border-left:5px solid #f97316;padding:13px}
+.sequence{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:18px 0}.term{background:#dbeafe;padding:12px 16px;border-radius:9px;font-weight:bold;min-width:55px;text-align:center}
+table{width:100%;border-collapse:collapse;margin:12px 0}th,td{border:1px solid #d1d5db;padding:10px;text-align:center}th{background:#0f766e;color:#fff}
+.example{background:#f8fafc;padding:15px;border-radius:10px;border:1px solid #e5e7eb;margin:12px 0}
+.question{background:#f9fafb;border:1px solid #e5e7eb;padding:17px;margin:16px 0;border-radius:12px}.question label{display:block;padding:7px;border-radius:5px;cursor:pointer}.question label:hover{background:#e5e7eb}
+input[type=number],input[type=text]{padding:10px;width:100%;max-width:330px;border:1px solid #9ca3af;border-radius:7px;font-size:1rem}
+.primary{background:#2563eb;color:#fff;border:0;padding:12px 20px;border-radius:7px;cursor:pointer;font-size:1rem;font-weight:bold}.primary:hover{background:#1d4ed8}
+.secondary{background:#e5e7eb;color:#111827;border:0;padding:10px 16px;border-radius:7px;cursor:pointer}
+.result{margin-top:16px;padding:17px;border-radius:10px;font-weight:bold}.correct{background:#dcfce7;color:#166534}.incorrect{background:#fee2e2;color:#991b1b}
+.progress{height:12px;background:#e5e7eb;border-radius:10px;overflow:hidden}.progress-bar{height:100%;width:0;background:#2563eb;transition:.5s}
+.badge{display:inline-block;background:#dbeafe;padding:5px 9px;border-radius:20px;font-weight:bold;margin:3px}
+footer{background:#111827;color:#fff;text-align:center;padding:24px;margin-top:25px}
+@media(max-width:600px){.card{padding:17px}nav button{padding:9px 10px;font-size:.88rem}}
+
+        .author-name{
+            margin: 8px 0 0;
+            font-size: .95rem;
+            opacity: .9;
+            font-weight: 600;
+        }
+
+</style>
+</head>
+<body>
+
+<header>
+<h1>🔢 Sequences & Series</h1>
+<p>Learn • Identify • Find Terms • Calculate Sums • Assess</p>
+<p class="author-name">Author: Doh Samuel Elorm</p>
+</header>
+
+<nav>
+<button class="active" onclick="show('learn',this)">Learn</button>
+<button onclick="show('types',this)">Types</button>
+<button onclick="show('formulas',this)">Formula Sheet</button>
+<button onclick="show('practice',this)">Practice</button>
+<button onclick="show('quiz',this)">Assessment</button>
+<button onclick="show('challenge',this)">Challenge</button>
+</nav>
+
+<main class="container">
+
+<section id="learn" class="section active">
+<div class="card">
+<h2>🎯 Learning Objectives</h2>
+<ul>
+<li>Understand the difference between a sequence and a series.</li>
+<li>Identify arithmetic and geometric sequences.</li>
+<li>Find the common difference or common ratio.</li>
+<li>Find the nth term.</li>
+<li>Find the sum of arithmetic and geometric series.</li>
+<li>Solve sequence and series problems confidently.</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>What is a Sequence?</h2>
+<p>A <strong>sequence</strong> is an ordered list of numbers that follows a pattern.</p>
+<div class="sequence"><span class="term">2</span><span class="term">5</span><span class="term">8</span><span class="term">11</span><span class="term">14</span></div>
+<p>Each number is called a <strong>term</strong>. The position of a term is represented by <strong>n</strong>.</p>
+</div>
+
+<div class="card">
+<h2>What is a Series?</h2>
+<p>A <strong>series</strong> is formed when the terms of a sequence are added together.</p>
+<div class="formula">Sequence: 2, 5, 8, 11, ...</div>
+<div class="formula">Series: 2 + 5 + 8 + 11 + ...</div>
+</div>
+
+<div class="card">
+<h2>⭐ The Main Trick</h2>
+<div class="tip">
+<strong>Arithmetic:</strong> Add or subtract the same number each time → find the common difference <strong>d</strong>.<br><br>
+<strong>Geometric:</strong> Multiply or divide by the same number each time → find the common ratio <strong>r</strong>.
+</div>
+</div>
+</section>
+
+<section id="types" class="section">
+<div class="card">
+<h2>➕ Arithmetic Sequence</h2>
+<p>The difference between consecutive terms is constant.</p>
+<div class="sequence"><span class="term">4</span><span class="term">7</span><span class="term">10</span><span class="term">13</span><span class="term">16</span></div>
+<p>Common difference: <strong>d = 3</strong></p>
+<div class="formula">nth term: aₙ = a + (n − 1)d</div>
+<div class="formula">Sum: Sₙ = n/2 [2a + (n − 1)d]</div>
+</div>
+
+<div class="card">
+<h2>✖️ Geometric Sequence</h2>
+<p>Each term is multiplied or divided by the same number.</p>
+<div class="sequence"><span class="term">3</span><span class="term">6</span><span class="term">12</span><span class="term">24</span><span class="term">48</span></div>
+<p>Common ratio: <strong>r = 2</strong></p>
+<div class="formula">nth term: aₙ = arⁿ⁻¹</div>
+<div class="formula">Sum: Sₙ = a(rⁿ − 1)/(r − 1), r ≠ 1</div>
+<div class="formula">Equivalent form: Sₙ = a(1 − rⁿ)/(1 − r)</div>
+</div>
+
+<div class="card">
+<h2>♾️ Infinite Geometric Series</h2>
+<p>An infinite geometric series has a finite sum only when:</p>
+<div class="formula">|r| &lt; 1</div>
+<div class="formula">S∞ = a/(1 − r)</div>
+</div>
+</section>
+
+<section id="formulas" class="section">
+<div class="card">
+<h2>📋 Formula Sheet</h2>
+<table>
+<tr><th>Topic</th><th>Formula</th></tr>
+<tr><td>Arithmetic nth term</td><td>aₙ = a + (n − 1)d</td></tr>
+<tr><td>Arithmetic sum</td><td>Sₙ = n/2[2a + (n − 1)d]</td></tr>
+<tr><td>Arithmetic sum</td><td>Sₙ = n/2(a + l)</td></tr>
+<tr><td>Geometric nth term</td><td>aₙ = arⁿ⁻¹</td></tr>
+<tr><td>Geometric finite sum</td><td>Sₙ = a(rⁿ − 1)/(r − 1)</td></tr>
+<tr><td>Geometric infinite sum</td><td>S∞ = a/(1 − r), |r| &lt; 1</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>🔎 Symbols</h2>
+<p><span class="badge">a</span> first term</p>
+<p><span class="badge">aₙ</span> nth term</p>
+<p><span class="badge">d</span> common difference</p>
+<p><span class="badge">r</span> common ratio</p>
+<p><span class="badge">n</span> number of terms</p>
+<p><span class="badge">l</span> last term</p>
+<p><span class="badge">Sₙ</span> sum of first n terms</p>
+</div>
+</section>
+
+<section id="practice" class="section">
+<div class="card">
+<h2>✏️ Guided Examples</h2>
+
+<div class="example">
+<h3>Example 1 — Find the nth Term</h3>
+<p>Find the 10th term of: 5, 8, 11, 14, ...</p>
+<p>a = 5, d = 3, n = 10</p>
+<p>aₙ = a + (n−1)d</p>
+<p>a₁₀ = 5 + 9(3) = <strong>32</strong></p>
+</div>
+
+<div class="example">
+<h3>Example 2 — Arithmetic Sum</h3>
+<p>Find the sum of the first 20 terms of: 2, 5, 8, 11, ...</p>
+<p>a = 2, d = 3, n = 20</p>
+<p>S₂₀ = 20/2[2(2) + 19(3)]</p>
+<p>= 10(4 + 57) = <strong>610</strong></p>
+</div>
+
+<div class="example">
+<h3>Example 3 — Geometric Sequence</h3>
+<p>Find the 6th term of: 3, 6, 12, 24, ...</p>
+<p>a = 3, r = 2, n = 6</p>
+<p>a₆ = 3(2⁵) = <strong>96</strong></p>
+</div>
+
+<div class="example">
+<h3>Example 4 — Infinite Geometric Series</h3>
+<p>Find the sum: 8 + 4 + 2 + 1 + ...</p>
+<p>a = 8, r = 1/2</p>
+<p>S∞ = 8/(1 − 1/2) = <strong>16</strong></p>
+</div>
+</div>
+</section>
+
+<section id="quiz" class="section">
+<div class="card">
+<h2>📝 Student Assessment</h2>
+<p>Answer all 10 questions. Then click <strong>Submit Assessment</strong>.</p>
+<div class="progress"><div id="bar" class="progress-bar"></div></div>
+
+<div class="question"><h3>1. What is the common difference in 4, 7, 10, 13, ...?</h3>
+<label><input type="radio" name="q1" value="2"> 2</label>
+<label><input type="radio" name="q1" value="3"> 3</label>
+<label><input type="radio" name="q1" value="4"> 4</label>
+<label><input type="radio" name="q1" value="7"> 7</label></div>
+
+<div class="question"><h3>2. Which is an arithmetic sequence?</h3>
+<label><input type="radio" name="q2" value="a"> 2, 4, 8, 16</label>
+<label><input type="radio" name="q2" value="b"> 5, 8, 11, 14</label>
+<label><input type="radio" name="q2" value="c"> 3, 6, 12, 24</label>
+<label><input type="radio" name="q2" value="d"> 1, 2, 4, 8</label></div>
+
+<div class="question"><h3>3. What is the common ratio in 3, 6, 12, 24, ...?</h3>
+<label><input type="radio" name="q3" value="1"> 1</label>
+<label><input type="radio" name="q3" value="2"> 2</label>
+<label><input type="radio" name="q3" value="3"> 3</label>
+<label><input type="radio" name="q3" value="6"> 6</label></div>
+
+<div class="question"><h3>4. Find the 10th term of 5, 8, 11, 14, ...</h3>
+<label><input type="radio" name="q4" value="32"> 32</label>
+<label><input type="radio" name="q4" value="35"> 35</label>
+<label><input type="radio" name="q4" value="30"> 30</label>
+<label><input type="radio" name="q4" value="29"> 29</label></div>
+
+<div class="question"><h3>5. Which formula gives the nth term of an arithmetic sequence?</h3>
+<label><input type="radio" name="q5" value="a"> aₙ = arⁿ⁻¹</label>
+<label><input type="radio" name="q5" value="b"> aₙ = a + (n−1)d</label>
+<label><input type="radio" name="q5" value="c"> Sₙ = n/2(a+l)</label>
+<label><input type="radio" name="q5" value="d"> S∞ = a/(1−r)</label></div>
+
+<div class="question"><h3>6. Find the sum of the first 5 terms of 2, 5, 8, 11, 14.</h3>
+<label><input type="radio" name="q6" value="35"> 35</label>
+<label><input type="radio" name="q6" value="40"> 40</label>
+<label><input type="radio" name="q6" value="45"> 45</label>
+<label><input type="radio" name="q6" value="50"> 50</label></div>
+
+<div class="question"><h3>7. Find the 6th term of 3, 6, 12, 24, ...</h3>
+<input id="q7" type="number" placeholder="Enter answer"></div>
+
+<div class="question"><h3>8. Find the sum of 8 + 4 + 2 + 1 + ... to infinity.</h3>
+<input id="q8" type="number" placeholder="Enter answer"></div>
+
+<div class="question"><h3>9. A sequence has first term 10 and common difference 4. Find its 5th term.</h3>
+<input id="q9" type="number" placeholder="Enter answer"></div>
+
+<div class="question"><h3>10. Which condition is required for an infinite geometric series to have a finite sum?</h3>
+<label><input type="radio" name="q10" value="a"> r &gt; 1</label>
+<label><input type="radio" name="q10" value="b"> r = 1</label>
+<label><input type="radio" name="q10" value="c"> |r| &lt; 1</label>
+<label><input type="radio" name="q10" value="d"> r &gt; 0</label></div>
+
+<button class="primary" onclick="submitQuiz()">Submit Assessment</button>
+<button class="secondary" onclick="resetQuiz()">Reset</button>
+<div id="quizResult"></div>
+</div>
+</section>
+
+<section id="challenge" class="section">
+<div class="card">
+<h2>🔥 Challenge Problem</h2>
+<p>The first term of an arithmetic sequence is 7 and the common difference is 5.</p>
+<p><strong>Find the sum of the first 25 terms.</strong></p>
+<div class="formula">Sₙ = n/2[2a + (n−1)d]</div>
+<input id="challengeAnswer" type="number" placeholder="Enter your answer">
+<br><br><button class="primary" onclick="checkChallenge()">Check Answer</button>
+<div id="challengeResult"></div>
+</div>
+
+<div class="card">
+<h2>🏆 Achievement Levels</h2>
+<table><tr><th>Score</th><th>Level</th></tr>
+<tr><td>90–100%</td><td>🏆 Sequence Master</td></tr>
+<tr><td>70–89%</td><td>⭐ Excellent</td></tr>
+<tr><td>50–69%</td><td>👍 Good</td></tr>
+<tr><td>Below 50%</td><td>📚 Keep Practising</td></tr></table>
+</div>
+</section>
+
+</main>
+
+<footer>
+<p>🔢 Sequences & Series Learning Centre</p>
+<p>Find the pattern • Choose the formula • Solve • Check</p>
+</footer>
+
+<script>
+function show(id,btn){
+ document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+ if(btn)btn.classList.add('active');
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function submitQuiz(){
+ const answers={q1:'3',q2:'b',q3:'2',q4:'32',q5:'b',q6:'40',q10:'c'};
+ let score=0,total=10;
+ for(const q in answers){
+  const selected=document.querySelector('input[name="'+q+'"]:checked');
+  if(selected&&selected.value===answers[q])score++;
+ }
+ if(Number(document.getElementById('q7').value)===96)score++;
+ if(Number(document.getElementById('q8').value)===16)score++;
+ if(Number(document.getElementById('q9').value)===26)score++;
+ const pct=Math.round(score/total*100);
+ const level=pct>=90?'🏆 Sequence Master':pct>=70?'⭐ Excellent':pct>=50?'👍 Good':'📚 Keep Practising';
+ const result=document.getElementById('quizResult');
+ result.className='result '+(pct>=50?'correct':'incorrect');
+ result.innerHTML='Your Score: '+score+'/'+total+'<br>Percentage: '+pct+'%<br>Level: '+level;
+ document.getElementById('bar').style.width=pct+'%';
+}
+
+function resetQuiz(){
+ document.querySelectorAll('#quiz input[type=radio]').forEach(x=>x.checked=false);
+ ['q7','q8','q9'].forEach(id=>document.getElementById(id).value='');
+ document.getElementById('quizResult').innerHTML='';
+ document.getElementById('quizResult').className='';
+ document.getElementById('bar').style.width='0%';
+}
+
+function checkChallenge(){
+ const answer=Number(document.getElementById('challengeAnswer').value);
+ const result=document.getElementById('challengeResult');
+ if(answer===1650){
+  result.className='result correct';
+  result.innerHTML='🎉 Correct! S₂₅ = 1650.';
+ }else{
+  result.className='result incorrect';
+  result.innerHTML='❌ Try again. Use Sₙ = n/2[2a + (n−1)d].';
+ }
+}
+</script>
+</body>
+</html>

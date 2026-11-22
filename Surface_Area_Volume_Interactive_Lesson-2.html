@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Surface Area & Volume — Interactive Lesson</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;color:#1f2937;line-height:1.55}
+header{background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;text-align:center;padding:30px 18px}
+header h1{margin:0 0 8px;font-size:clamp(1.7rem,5vw,2.5rem)}header p{margin:0}
+nav{position:sticky;top:0;z-index:20;background:#111827;display:flex;justify-content:center;flex-wrap:wrap;padding:8px;gap:5px}
+nav button{background:transparent;color:#fff;border:0;padding:10px 14px;border-radius:7px;cursor:pointer;font-weight:bold}
+nav button:hover,nav button.active{background:#374151}
+.container{max-width:1050px;margin:auto;padding:18px}.section{display:none}.section.active{display:block}
+.card{background:#fff;margin:18px 0;padding:22px;border-radius:15px;box-shadow:0 4px 15px #00000012}
+h2{color:#2563eb;margin-top:0}h3{color:#6d28d9}
+.formula{background:#eef2ff;border-left:5px solid #4f46e5;padding:12px 15px;margin:10px 0;font-weight:bold}
+.tip{background:#ecfdf5;border-left:5px solid #10b981;padding:13px}.warning{background:#fff7ed;border-left:5px solid #f97316;padding:13px}
+.shapes{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px}.shape-card{text-align:center;background:#f9fafb;border:1px solid #e5e7eb;padding:18px;border-radius:12px}
+.shape{margin:18px auto;width:100px;height:100px;position:relative}.cube{transform:rotateX(-20deg) rotateY(35deg);transform-style:preserve-3d}
+.cube div{position:absolute;width:75px;height:75px;border:2px solid #1d4ed8;background:#93c5fd}.cube .front{transform:translateZ(37.5px)}.cube .back{transform:rotateY(180deg) translateZ(37.5px)}.cube .right{transform:rotateY(90deg) translateZ(37.5px)}.cube .left{transform:rotateY(-90deg) translateZ(37.5px)}.cube .top{transform:rotateX(90deg) translateZ(37.5px)}.cube .bottom{transform:rotateX(-90deg) translateZ(37.5px)}
+.cylinder{width:82px;height:105px;background:#c4b5fd;border:2px solid #6d28d9;border-radius:41px/16px}.sphere{width:100px;height:100px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff,#60a5fa);border:2px solid #2563eb}.cone{width:0;height:0;border-left:50px solid transparent;border-right:50px solid transparent;border-bottom:100px solid #a78bfa}
+table{width:100%;border-collapse:collapse;margin:12px 0}th,td{border:1px solid #d1d5db;padding:10px;text-align:center}th{background:#2563eb;color:white}
+.question{background:#f9fafb;border:1px solid #e5e7eb;padding:17px;margin:16px 0;border-radius:12px}.question label{display:block;padding:7px;border-radius:5px;cursor:pointer}.question label:hover{background:#e5e7eb}
+input[type=number],input[type=text]{padding:10px;width:100%;max-width:320px;border:1px solid #9ca3af;border-radius:7px;font-size:1rem}
+.primary{background:#2563eb;color:#fff;border:0;padding:12px 20px;border-radius:7px;cursor:pointer;font-size:1rem;font-weight:bold}.primary:hover{background:#1d4ed8}
+.secondary{background:#e5e7eb;color:#111827;border:0;padding:10px 16px;border-radius:7px;cursor:pointer}
+.result{margin-top:16px;padding:17px;border-radius:10px;font-weight:bold}.correct{background:#dcfce7;color:#166534}.incorrect{background:#fee2e2;color:#991b1b}
+.progress{height:12px;background:#e5e7eb;border-radius:10px;overflow:hidden}.progress-bar{height:100%;width:0;background:#2563eb;transition:.5s}
+.example{background:#f8fafc;padding:15px;border-radius:10px;border:1px solid #e5e7eb}
+footer{background:#111827;color:white;text-align:center;padding:24px;margin-top:25px}
+@media(max-width:600px){.card{padding:17px}nav button{padding:9px 10px;font-size:.9rem}}
+
+        .author-name{
+            margin: 8px 0 0;
+            font-size: .95rem;
+            opacity: .9;
+            font-weight: 600;
+        }
+
+</style>
+</head>
+<body>
+
+<header>
+<h1>📐 Surface Area & Volume of 3D Shapes</h1>
+<p>Learn • Explore • Practise • Assess</p>
+<p class="author-name">Author: Doh Samuel Elorm</p>
+</header>
+
+<nav id="nav">
+<button class="active" onclick="show('learn',this)">Learn</button>
+<button onclick="show('shapes',this)">3D Shapes</button>
+<button onclick="show('formulas',this)">Formula Sheet</button>
+<button onclick="show('practice',this)">Practice</button>
+<button onclick="show('quiz',this)">Assessment</button>
+<button onclick="show('challenge',this)">Challenge</button>
+</nav>
+
+<main class="container">
+
+<section id="learn" class="section active">
+<div class="card">
+<h2>🎯 Learning Objectives</h2>
+<ul>
+<li>Identify common 3D shapes.</li>
+<li>Calculate surface area and volume.</li>
+<li>Find the area of a cross-section.</li>
+<li>Calculate surface area for open and closed shapes.</li>
+<li>Select and apply the correct formula.</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>What is Surface Area?</h2>
+<p>Surface area is the total area of all the <strong>exposed surfaces</strong> of a 3D object.</p>
+<div class="formula">Surface Area = Sum of all exposed surfaces</div>
+<div class="tip"><strong>⭐ Exam trick:</strong> Look at the object and ask: “Which surfaces are exposed?” Add only those surfaces.</div>
+</div>
+
+<div class="card">
+<h2>What is Volume?</h2>
+<p>Volume is the amount of space occupied by a 3D object.</p>
+<div class="formula">Volume of a prism = Area of cross-section × Length</div>
+</div>
+
+<div class="card">
+<h2>Cross-Sectional Area</h2>
+<p>A cross-section is the 2D shape revealed when a 3D object is cut.</p>
+<table><tr><th>Cross-section</th><th>Area</th></tr>
+<tr><td>Rectangle</td><td>A = lw</td></tr>
+<tr><td>Triangle</td><td>A = ½bh</td></tr>
+<tr><td>Circle</td><td>A = πr²</td></tr>
+<tr><td>Trapezium</td><td>A = ½(a+b)h</td></tr></table>
+<div class="formula">For a uniform prism: A = Volume ÷ Length</div>
+</div>
+
+<div class="card">
+<h2>🔓 Open vs Closed</h2>
+<div class="warning"><strong>Closed:</strong> include every surface.<br><br>
+<strong>Open on one side:</strong> leave out the missing surface.<br><br>
+<strong>Open on two sides:</strong> leave out both missing surfaces.</div>
+</div>
+</section>
+
+<section id="shapes" class="section">
+<div class="card">
+<h2>🧊 Explore Common 3D Shapes</h2>
+<div class="shapes">
+<div class="shape-card"><h3>Cube</h3><div class="shape cube"><div class="front"></div><div class="back"></div><div class="right"></div><div class="left"></div><div class="top"></div><div class="bottom"></div></div><p><b>SA = 6a²</b></p><p><b>V = a³</b></p></div>
+<div class="shape-card"><h3>Cuboid</h3><div style="width:105px;height:75px;margin:30px auto;background:#93c5fd;border:3px solid #1d4ed8;transform:skewY(-12deg);box-shadow:18px -12px 0 #bfdbfe"></div><p><b>SA = 2(lw+lh+wh)</b></p><p><b>V = lwh</b></p></div>
+<div class="shape-card"><h3>Cylinder</h3><div class="shape cylinder"></div><p><b>SA = 2πr(r+h)</b></p><p><b>V = πr²h</b></p></div>
+<div class="shape-card"><h3>Sphere</h3><div class="shape sphere"></div><p><b>SA = 4πr²</b></p><p><b>V = ⁴⁄₃πr³</b></p></div>
+<div class="shape-card"><h3>Cone</h3><div class="shape cone"></div><p><b>SA = πr(r+l)</b></p><p><b>V = ⅓πr²h</b></p></div>
+</div>
+</div>
+</section>
+
+<section id="formulas" class="section">
+<div class="card">
+<h2>📋 Formula Sheet</h2>
+<table>
+<tr><th>Shape</th><th>Surface Area</th><th>Volume</th></tr>
+<tr><td>Cube</td><td>6a²</td><td>a³</td></tr>
+<tr><td>Cuboid</td><td>2(lw + lh + wh)</td><td>lwh</td></tr>
+<tr><td>Cylinder</td><td>2πr(r+h)</td><td>πr²h</td></tr>
+<tr><td>Sphere</td><td>4πr²</td><td>⁴⁄₃πr³</td></tr>
+<tr><td>Cone</td><td>πr(r+l)</td><td>⅓πr²h</td></tr>
+<tr><td>Prism</td><td>2A + PL</td><td>AL</td></tr>
+</table>
+<h3>Open Shapes</h3>
+<div class="formula">Cube, one face open: SA = 5a²</div>
+<div class="formula">Cuboid, top open: SA = lw + 2lh + 2wh</div>
+<div class="formula">Cylinder, one end open: SA = πr² + 2πrh</div>
+<div class="formula">Cylinder, both ends open: SA = 2πrh</div>
+<div class="formula">Prism, one end open: SA = A + PL</div>
+<div class="formula">Prism, both ends open: SA = PL</div>
+</div>
+</section>
+
+<section id="practice" class="section">
+<div class="card">
+<h2>✏️ Guided Practice</h2>
+
+<div class="example">
+<h3>Example 1 — Cube</h3>
+<p>A cube has side 5 cm.</p>
+<p>SA = 6a² = 6 × 5² = <strong>150 cm²</strong></p>
+<p>V = a³ = 5³ = <strong>125 cm³</strong></p>
+</div>
+
+<div class="example">
+<h3>Example 2 — Open-Top Cuboid</h3>
+<p>l = 5 cm, w = 3 cm, h = 2 cm.</p>
+<p>Open-top SA = lw + 2lh + 2wh</p>
+<p>= 15 + 20 + 12 = <strong>47 cm²</strong></p>
+</div>
+
+<div class="example">
+<h3>Example 3 — Prism</h3>
+<p>Cross-sectional area = 8 cm² and length = 5 cm.</p>
+<p>V = A × L = 8 × 5 = <strong>40 cm³</strong></p>
+</div>
+</div>
+</section>
+
+<section id="quiz" class="section">
+<div class="card">
+<h2>📝 Student Assessment</h2>
+<p>Answer all 10 questions, then select <strong>Submit Assessment</strong>.</p>
+<div class="progress"><div id="bar" class="progress-bar"></div></div>
+
+<div class="question"><h3>1. What is the surface area of a cube with side 4 cm?</h3>
+<label><input type="radio" name="q1" value="48"> 48 cm²</label>
+<label><input type="radio" name="q1" value="64"> 64 cm²</label>
+<label><input type="radio" name="q1" value="96"> 96 cm²</label>
+<label><input type="radio" name="q1" value="16"> 16 cm²</label></div>
+
+<div class="question"><h3>2. What is the volume of a cuboid measuring 5 cm × 3 cm × 2 cm?</h3>
+<label><input type="radio" name="q2" value="30"> 30 cm³</label>
+<label><input type="radio" name="q2" value="10"> 10 cm³</label>
+<label><input type="radio" name="q2" value="60"> 60 cm³</label>
+<label><input type="radio" name="q2" value="15"> 15 cm³</label></div>
+
+<div class="question"><h3>3. Which formula gives the volume of a cylinder?</h3>
+<label><input type="radio" name="q3" value="a"> πr²h</label>
+<label><input type="radio" name="q3" value="b"> 2πrh</label>
+<label><input type="radio" name="q3" value="c"> 4πr²</label>
+<label><input type="radio" name="q3" value="d"> πrl</label></div>
+
+<div class="question"><h3>4. A cube has one face removed. How many faces remain?</h3>
+<label><input type="radio" name="q4" value="5"> 5</label>
+<label><input type="radio" name="q4" value="6"> 6</label>
+<label><input type="radio" name="q4" value="4"> 4</label>
+<label><input type="radio" name="q4" value="3"> 3</label></div>
+
+<div class="question"><h3>5. A prism has cross-sectional area 8 cm² and length 5 cm. Find its volume.</h3>
+<label><input type="radio" name="q5" value="40"> 40 cm³</label>
+<label><input type="radio" name="q5" value="13"> 13 cm³</label>
+<label><input type="radio" name="q5" value="30"> 30 cm³</label>
+<label><input type="radio" name="q5" value="16"> 16 cm³</label></div>
+
+<div class="question"><h3>6. A cylinder is open at both ends. Which surface remains?</h3>
+<label><input type="radio" name="q6" value="curved"> Only the curved surface</label>
+<label><input type="radio" name="q6" value="two"> Both circular ends only</label>
+<label><input type="radio" name="q6" value="all"> All surfaces</label></div>
+
+<div class="question"><h3>7. What is the area of a circle with radius 3 cm? Use π = 3.14.</h3>
+<input id="q7" type="number" step="0.01" placeholder="Answer in cm²"></div>
+
+<div class="question"><h3>8. A cuboid has l = 5 cm, w = 3 cm and h = 2 cm. Find its volume.</h3>
+<input id="q8" type="number" placeholder="Answer in cm³"></div>
+
+<div class="question"><h3>9. What are the correct units for surface area?</h3>
+<label><input type="radio" name="q9" value="a"> cm</label>
+<label><input type="radio" name="q9" value="b"> cm²</label>
+<label><input type="radio" name="q9" value="c"> cm³</label></div>
+
+<div class="question"><h3>10. What are the correct units for volume?</h3>
+<label><input type="radio" name="q10" value="a"> cm</label>
+<label><input type="radio" name="q10" value="b"> cm²</label>
+<label><input type="radio" name="q10" value="c"> cm³</label></div>
+
+<button class="primary" onclick="submitQuiz()">Submit Assessment</button>
+<button class="secondary" onclick="resetQuiz()">Reset</button>
+<div id="quizResult"></div>
+</div>
+</section>
+
+<section id="challenge" class="section">
+<div class="card">
+<h2>🔥 Challenge</h2>
+<h3>Open-Top Box</h3>
+<p>A rectangular box has length 10 cm, width 6 cm and height 4 cm. The box has no top.</p>
+<div class="formula">Open-top SA = lw + 2lh + 2wh</div>
+<input id="challengeAnswer" type="number" placeholder="Enter answer in cm²">
+<br><br><button class="primary" onclick="checkChallenge()">Check Answer</button>
+<div id="challengeResult"></div>
+</div>
+
+<div class="card">
+<h2>🏆 Achievement Levels</h2>
+<table><tr><th>Score</th><th>Level</th></tr>
+<tr><td>90–100%</td><td>🏆 Master</td></tr>
+<tr><td>70–89%</td><td>⭐ Excellent</td></tr>
+<tr><td>50–69%</td><td>👍 Good</td></tr>
+<tr><td>Below 50%</td><td>📚 Keep Practising</td></tr></table>
+</div>
+</section>
+
+</main>
+
+<footer>
+<p>📐 Surface Area & Volume Learning Centre</p>
+<p>Learn the formula • Understand the shape • Solve the problem</p>
+</footer>
+
+<script>
+function show(id,btn){
+ document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+ if(btn) btn.classList.add('active');
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function submitQuiz(){
+ const answers={q1:'96',q2:'30',q3:'a',q4:'5',q5:'40',q6:'curved',q9:'b',q10:'c'};
+ let score=0,total=10;
+ for(const q in answers){
+  const selected=document.querySelector('input[name="'+q+'"]:checked');
+  if(selected && selected.value===answers[q]) score++;
+ }
+ if(Math.abs(Number(document.getElementById('q7').value)-28.26)<0.1) score++;
+ if(Number(document.getElementById('q8').value)===30) score++;
+ const pct=Math.round(score/total*100);
+ let level=pct>=90?'🏆 Master':pct>=70?'⭐ Excellent':pct>=50?'👍 Good':'📚 Keep Practising';
+ const result=document.getElementById('quizResult');
+ result.className='result '+(pct>=50?'correct':'incorrect');
+ result.innerHTML='Your Score: '+score+'/'+total+'<br>Percentage: '+pct+'%<br>Level: '+level;
+ document.getElementById('bar').style.width=pct+'%';
+}
+
+function resetQuiz(){
+ document.querySelectorAll('#quiz input[type=radio]').forEach(x=>x.checked=false);
+ document.getElementById('q7').value='';
+ document.getElementById('q8').value='';
+ document.getElementById('quizResult').innerHTML='';
+ document.getElementById('quizResult').className='';
+ document.getElementById('bar').style.width='0%';
+}
+
+function checkChallenge(){
+ const answer=Number(document.getElementById('challengeAnswer').value);
+ const result=document.getElementById('challengeResult');
+ if(answer===188){
+  result.className='result correct';
+  result.innerHTML='🎉 Correct! Surface area = 188 cm².';
+ }else{
+  result.className='result incorrect';
+  result.innerHTML='❌ Try again. Substitute l = 10, w = 6 and h = 4 into SA = lw + 2lh + 2wh.';
+ }
+}
+</script>
+</body>
+</html>
